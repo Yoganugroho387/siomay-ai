@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+
+<html lang="en" class="scroll-smooth">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Siomay Mas Yoga - Lezatnya Kenangan Rasa Istimewa</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+
+    <style>
+
+        body {
+
+            font-family: 'Poppins', sans-serif;
+
+            overflow-x: hidden;
+
+            scroll-behavior: smooth;
+
+        }
+
+        h1, h2 {
+
+            font-family: 'Playfair Display', serif;
+
+        }
+
+        .hero-bg {
+
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('s.jpg') no-repeat center center/cover;
+
+            animation: fadeInBackground 2s ease-out forwards;
+
+        }
+
+        @keyframes fadeInBackground {
+
+            from { opacity: 0.8; }
+
+            to { opacity: 1; }
+
+        }
+
+        .product-card {
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+
+        }
+
+        .product-card:hover {
+
+            transform: translateY(-8px);
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+
+        }
+
+        .fade-in-up {
+
+            opacity: 0;
+
+            transform: translateY(30px);
+
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+        }
+
+        .fade-in-up.animate {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+        .scale-in {
+
+            opacity: 0;
+
+            transform: scale(0.9);
+
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+
+        }
+
+        .scale-in.animate {
+
+            opacity: 1;
+
+            transform: scale(1);
+
+        }
+
+        .navbar-shadow {
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+        }
+
+        /* Custom scrollbar */
+
+        ::-webkit-scrollbar {
+
+            width: 10px;
+
+        }
+
+        ::-webkit-scrollbar-track {
+
+            background: #f0f0f0;
+
+            border-radius: 10px;
+
+        }
+
+        ::-webkit-scrollbar-thumb {
+
+            background: #ef4444; /* red-500 */
+
+            border-radius: 10px;
+
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+
+            background: #dc2626; /* red-600 */
+
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+
+
+
+
+
+
+    <header class="fixed top-0 left-0 right-0 bg-white bg-opacity-95 navbar-shadow z-50 py-4 px-6 md:px-12">
+
+        <nav class="container mx-auto flex justify-between items-center">
+
+            <a href="#" class="text-3xl lg:text-4xl font-extrabold text-red-600 hover:text-red-700 transition duration-300 tracking-tight">Siomay Mas Yoga</a>
+
+            <div class="flex items-center space-x-4 md:space-x-8">
+
+                <a href="#menu" class="text-lg font-semibold text-gray-700 hover:text-red-600 transition duration-300 hidden md:block">Menu</a>
+
+                <a href="#about" class="text-lg font-semibold text-gray-700 hover:text-red-600 transition duration-300 hidden md:block">Tentang Kami</a>
+
+                <a href="#contact" class="text-lg font-semibold text-gray-700 hover:text-red-600 transition duration-300 hidden md:block">Kontak</a>
+
+                <button id="cart-button" class="relative bg-red-600 text-white p-3 rounded-full shadow-lg hover:bg-red-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-red-300 focus:ring-opacity-75 transform hover:scale-105">
+
+                    <i class="fas fa-shopping-cart text-xl"></i>
+
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-white text-red-600 text-xs font-bold rounded-full px-2 py-1 flex items-center justify-center min-w-[24px] min-h-[24px]">0</span>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+ <div id="chat-toggle" class="fixed bottom-6 right-6 bg-red-600 text-white rounded-full p-4 cursor-pointer shadow-lg hover:bg-red-700">
+    💬
+  </div>
+
+  <!-- Chat Box -->
+  <div id="chat-box" class="fixed bottom-24 right-6 w-80 bg-white border border-gray-300 rounded-lg shadow-lg hidden flex flex-col h-96">
+    <div class="bg-red-600 text-white px-4 py-3 rounded-t-lg flex justify-between items-center">
+      <span>Siomay with AI 🍡🤖</span>
+      <button id="close-chat" class="text-white text-xl">&times;</button>
+    </div>
+    <div id="messages" class="flex-1 p-4 overflow-y-auto space-y-2"></div>
+    <div class="flex border-t p-2">
+      <input id="user-input" type="text" placeholder="Tulis pesan..." class="flex-1 border border-gray-300 rounded px-2 py-1 mr-2"/>
+      <button onclick="sendMessage()" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Kirim</button>
+    </div>
+
+    <section class="hero-bg h-screen flex items-center justify-center text-white text-center relative px-4">
+
+        <div class="relative z-10 fade-in-up">
+
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 leading-tight drop-shadow-lg animate-fade-in-up">Siomay Mas Yoga</h1>
+
+            <p class="text-xl md:text-3xl mb-8 drop-shadow-lg animate-fade-in-up" style="animation-delay: 0.3s;">Keaslian Rasa, Kekayaan Tradisi, dan Kenangan Manis</p>
+
+            <a href="#menu" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xl md:text-2xl font-bold py-3 px-8 rounded-full shadow-xl transform hover:scale-105 transition duration-500 inline-block animate-pulse-custom">
+
+                <i class="fas fa-utensils mr-3"></i>Pesan Sekarang!
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="menu" class="py-20 bg-gray-100">
+
+        <div class="container mx-auto px-6">
+
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 fade-in-up">Pilihan Menu Spesial Kami</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="bg-white rounded-xl product-card overflow-hidden fade-in-up">
+
+                    <img src="s.jpg" alt="Siomay Komplit" class="w-full h-64 object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="text-2xl md:text-3xl font-bold mb-2 text-gray-900">Siomay Komplit</h3>
+
+                        <p class="text-gray-700 mb-4 text-base">Siomay ikan tenggiri lembut, disajikan dengan tahu, kentang, telur, dan pare kukus.</p>
+
+                        <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
+
+                            <span class="text-2xl md:text-3xl font-extrabold text-red-600 mb-2 sm:mb-0">Rp 25.000</span>
+
+                            <button class="add-to-cart-btn bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300 transform hover:scale-105 flex items-center justify-center" data-name="Siomay Komplit" data-price="25000">
+
+                                <i class="fas fa-plus mr-2"></i> Tambah
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="bg-white rounded-xl product-card overflow-hidden fade-in-up" style="transition-delay: 0.1s;">
+
+                    <img src="s.jpg" alt="Siomay Mini" class="w-full h-64 object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="text-2xl md:text-3xl font-bold mb-2 text-gray-900">Siomay Mini Porsi Pas</h3>
+
+                        <p class="text-gray-700 mb-4 text-base">Porsi kecil yang sempurna untuk camilan cepat atau pengganjal lapar.</p>
+
+                        <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
+
+                            <span class="text-2xl md:text-3xl font-extrabold text-red-600 mb-2 sm:mb-0">Rp 15.000</span>
+
+                            <button class="add-to-cart-btn bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300 transform hover:scale-105 flex items-center justify-center" data-name="Siomay Mini Porsi Pas" data-price="15000">
+
+                                <i class="fas fa-plus mr-2"></i> Tambah
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="bg-white rounded-xl product-card overflow-hidden fade-in-up" style="transition-delay: 0.2s;">
+
+                    <img src="s.jpg" alt="Siomay Frozen" class="w-full h-64 object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="text-2xl md:text-3xl font-bold mb-2 text-gray-900">Siomay Frozen (10 pcs)</h3>
+
+                        <p class="text-gray-700 mb-4 text-base">Nikmati siomay favorit Anda kapan saja, siap dihangatkan di rumah.</p>
+
+                        <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
+
+                            <span class="text-2xl md:text-3xl font-extrabold text-red-600 mb-2 sm:mb-0">Rp 50.000</span>
+
+                            <button class="add-to-cart-btn bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300 transform hover:scale-105 flex items-center justify-center" data-name="Siomay Frozen (10 pcs)" data-price="50000">
+
+                                <i class="fas fa-plus mr-2"></i> Tambah
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="bg-white rounded-xl product-card overflow-hidden fade-in-up" style="transition-delay: 0.3s;">
+
+                    <img src="s.jpg" alt="Siomay Pedas" class="w-full h-64 object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="text-2xl md:text-3xl font-bold mb-2 text-gray-900">Siomay Pedas Naga</h3>
+
+                        <p class="text-gray-700 mb-4 text-base">Siomay dengan bumbu kacang super pedas, tantangan bagi lidah Anda!</p>
+
+                        <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
+
+                            <span class="text-2xl md:text-3xl font-extrabold text-red-600 mb-2 sm:mb-0">Rp 28.000</span>
+
+                            <button class="add-to-cart-btn bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300 transform hover:scale-105 flex items-center justify-center" data-name="Siomay Pedas Naga" data-price="28000">
+
+                                <i class="fas fa-plus mr-2"></i> Tambah
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                 <div class="bg-white rounded-xl product-card overflow-hidden fade-in-up" style="transition-delay: 0.4s;">
+
+                    <img src="s.jpg" alt="Bumbu Kacang" class="w-full h-64 object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="text-2xl md:text-3xl font-bold mb-2 text-gray-900">Extra Bumbu Kacang</h3>
+
+                        <p class="text-gray-700 mb-4 text-base">Tambahan bumbu kacang kental dan gurih untuk pecinta siomay.</p>
+
+                        <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
+
+                            <span class="text-2xl md:text-3xl font-extrabold text-red-600 mb-2 sm:mb-0">Rp 5.000</span>
+
+                            <button class="add-to-cart-btn bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300 transform hover:scale-105 flex items-center justify-center" data-name="Extra Bumbu Kacang" data-price="5000">
+
+                                <i class="fas fa-plus mr-2"></i> Tambah
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                 <div class="bg-white rounded-xl product-card overflow-hidden fade-in-up" style="transition-delay: 0.5s;">
+
+                    <img src="s.jpg" alt="Es Teh" class="w-full h-64 object-cover">
+
+                    <div class="p-6">
+
+                        <h3 class="text-2xl md:text-3xl font-bold mb-2 text-gray-900">Es Teh Manis</h3>
+
+                        <p class="text-gray-700 mb-4 text-base">Penyegar dahaga sempurna untuk menemani siomay Anda.</p>
+
+                        <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
+
+                            <span class="text-2xl md:text-3xl font-extrabold text-red-600 mb-2 sm:mb-0">Rp 8.000</span>
+
+                            <button class="add-to-cart-btn bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300 transform hover:scale-105 flex items-center justify-center" data-name="Es Teh Manis" data-price="8000">
+
+                                <i class="fas fa-plus mr-2"></i> Tambah
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="about" class="py-20 bg-white">
+
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+
+            <div class="md:w-1/2 scale-in">
+
+                <img src="s.jpg" alt="Koko Yoga sedang memasak" class="rounded-xl shadow-2xl w-full h-auto object-cover border-4 border-red-200">
+
+            </div>
+
+            <div class="md:w-1/2 text-center md:text-left fade-in-up" style="transition-delay: 0.2s;">
+
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 text-gray-900">Cinta dalam Setiap Adonan Siomay Koko Yoga</h2>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">Siomay mas Yoga bukan sekadar makanan, melainkan warisan rasa yang kami jaga dengan sepenuh hati. Kami memilih **ikan tenggiri segar terbaik** dan memadukannya dengan bumbu rahasia keluarga yang telah disempurnakan lintas generasi. Setiap siomay dibuat dengan tangan, memastikan tekstur lembut, rasa gurih, dan aroma yang menggugah selera.</p>
+
+                <p class="text-lg text-gray-700 leading-relaxed">Kami percaya, makanan enak adalah cerminan dari bahan berkualitas dan proses yang jujur. mas Yoga berkomitmen untuk menyajikan pengalaman kuliner siomay yang tak terlupakan bagi Anda dan keluarga.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="py-20 bg-gradient-to-br from-red-600 to-red-700 text-white">
+
+        <div class="container mx-auto px-6 text-center">
+
+            <h2 class="text-4xl md:text-5xl font-bold mb-16 fade-in-up">Apa Kata Pelanggan Kami?</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                <div class="bg-red-800 bg-opacity-30 p-8 rounded-xl shadow-lg fade-in-up">
+
+                    <p class="text-xl italic mb-6">"Siomay terenak di Kebumen! Bumbu kacangnya juara, ikannya terasa banget. Langganan terus!"</p>
+
+                    <p class="font-semibold text-lg">- Sarah Dwi Lestari</p>
+
+                </div>
+
+                <div class="bg-red-800 bg-opacity-30 p-8 rounded-xl shadow-lg fade-in-up" style="transition-delay: 0.1s;">
+
+                    <p class="text-xl italic mb-6">"Selalu jadi pilihan pertama kalau kangen siomay. Rasanya konsisten dan bikin nagih. Mantap, mas Yoga!"</p>
+
+                    <p class="font-semibold text-lg">- Budi Santoso</p>
+
+                </div>
+
+                <div class="bg-red-800 bg-opacity-30 p-8 rounded-xl shadow-lg fade-in-up" style="transition-delay: 0.2s;">
+
+                    <p class="text-xl italic mb-6">"Siomay frozen-nya praktis banget. Rasanya sama persis kayak yang baru. Top markotop!"</p>
+
+                    <p class="font-semibold text-lg">- Maya Wulandari</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+
+        <div class="container mx-auto px-6 text-center">
+
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 fade-in-up">Terhubung dengan mas Yoga</h2>
+
+            <p class="text-xl mb-8 fade-in-up" style="transition-delay: 0.1s;">Ada pertanyaan, pesanan khusus, atau ingin menjadi reseller?</p>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 fade-in-up" style="transition-delay: 0.2s;">
+
+                <a href="tel:+6289685027530" class="flex items-center text-xl md:text-2xl hover:text-red-400 transition duration-300">
+
+                    <i class="fas fa-phone-alt text-3xl mr-3"></i>
+
+                    <span>+6289685027530</span>
+
+                </a>
+
+                <a href="mailto: yoganugroho39@gmail.com" class="flex items-center text-xl md:text-2xl hover:text-red-400 transition duration-300">
+
+                    <i class="fas fa-envelope text-3xl mr-3"></i>
+
+                    <span>yoganugroho39@gmail.com</span>
+
+                </a>
+
+                <a href="https://wa.me/6289685027530" target="_blank" class="flex items-center text-xl md:text-2xl hover:text-red-400 transition duration-300">
+
+                    <i class="fab fa-whatsapp text-3xl mr-3"></i>
+
+                    <span>Pesan via WhatsApp</span>
+
+                </a>
+
+            </div>
+
+            <div class="mt-12 fade-in-up" style="transition-delay: 0.3s;">
+
+                <p class="text-xl mb-6">Ikuti kami untuk update terbaru:</p>
+
+                <div class="flex justify-center space-x-8">
+
+                    <a href="#" class="text-white hover:text-red-400 transition duration-300 transform hover:scale-110">
+
+                        <i class="fab fa-instagram text-4xl"></i>
+
+                    </a>
+
+                    <a href="Instagram.com/yogaasz" class="text-white hover:text-red-400 transition duration-300 transform hover:scale-110">
+
+                        <i class="fab fa-facebook-f text-4xl"></i>
+
+                    </a>
+
+                    <a href="#" class="text-white hover:text-red-400 transition duration-300 transform hover:scale-110">
+
+                        <i class="fab fa-tiktok text-4xl"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <footer class="bg-gray-950 text-gray-300 py-8 text-center">
+
+        <div class="container mx-auto px-6">
+
+            <p>&copy; 2025 Siomay mas Yoga. Semua Hak Cipta Dilindungi.</p>
+
+            <p class="mt-2 text-sm">Dibuat dengan Cinta dan semangat untuk kuliner Indonesia.</p>
+
+        </div>
+
+    </footer>
+
+  
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[100] hidden animate-fade-in">
+
+        <div class="bg-white rounded-lg shadow-2xl p-6 md:p-8 w-11/12 md:w-2/3 lg:w-1/2 xl:w-2/5 relative animate-scale-in max-h-[90vh] flex flex-col">
+
+            <button id="close-cart-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold focus:outline-none">&times;</button>
+
+            <h2 class="text-3xl font-bold mb-6 text-gray-900 border-b pb-4">Keranjang Belanja Anda</h2>
+
+            <div id="cart-items" class="mb-6 flex-grow overflow-y-auto pr-2">
+
+                <p id="empty-cart-message" class="text-gray-600 italic text-center py-10">Keranjang Anda kosong. Yuk, tambahkan siomay favoritmu!</p>
+
+            </div>
+
+            <div class="border-t pt-4 flex justify-between items-center text-2xl font-bold text-gray-900">
+
+                <span>Total:</span>
+
+                <span id="cart-total">Rp 0</span>
+
+            </div>
+
+
+
+            <form id="checkout-form" class="mt-6 space-y-4">
+
+                <div>
+
+                    <label for="customer-name" class="block text-gray-700 text-sm font-bold mb-2">Nama Lengkap:</label>
+
+             <input type="text" id="customer-name" name="customerName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-red-500" placeholder="Nama Anda" required>
+
+                </div>
+
+                <div>
+
+                    <label for="customer-address" class="block text-gray-700 text-sm font-bold mb-2">Alamat Lengkap:</label>
+
+                    <textarea id="customer-address" name="customerAddress" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-red-500" placeholder="Jalan, No. Rumah, RT/RW, Kelurahan, Kecamatan, Kota" required></textarea>
+
+                </div>
+
+                <div>
+
+                    <label for="customer-notes" class="block text-gray-700 text-sm font-bold mb-2">Catatan (Opsional):</label>
+
+                    <input type="text" id="customer-notes" name="customerNotes" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-red-500" placeholder="Contoh: Tanpa saus kacang, pedas sedang">
+
+                </div>
+
+
+
+                <button type="submit" id="checkout-button-form" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-lg shadow-md transition duration-300 text-lg flex items-center justify-center transform hover:scale-[1.01]">
+
+                    <i class="fab fa-whatsapp mr-3"></i> Pesan via WhatsApp
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="toast-container" class="fixed bottom-8 right-8 z-[101] space-y-3"></div>
+
+
+
+    <style>
+
+        /* Specific animations for modal and toast */
+
+        @keyframes fade-in {
+
+            from { opacity: 0; }
+
+            to { opacity: 1; }
+
+        }
+
+        .animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
+
+
+
+        @keyframes scale-in {
+
+            from { transform: scale(0.9); opacity: 0; }
+
+            to { transform: scale(1); opacity: 1; }
+
+        }
+
+        .animate-scale-in { animation: scale-in 0.3s ease-out forwards; }
+
+
+
+        @keyframes pulseCustom {
+
+            0%, 100% { transform: scale(1); }
+
+            50% { transform: scale(1.03); }
+
+        }
+
+        .animate-pulse-custom {
+
+            animation: pulseCustom 1.5s infinite;
+
+        }
+
+
+
+        /* Responsive Navbar Button (for smaller screens) */
+
+        @media (max-width: 767px) {
+
+            .navbar-shadow {
+
+                box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+            }
+
+        }
+
+    </style>
+
+
+
+    <script>
+
+        // JavaScript for Cart Functionality and Animations
+
+        let cart = JSON.parse(localStorage.getItem('siomayKokoYogaCart')) || []; // Load cart from localStorage
+
+        const whatsappNumber = "6289685027530"; // Nomor WhatsApp tujuan
+
+
+
+        const cartButton = document.getElementById('cart-button');
+
+        const cartModal = document.getElementById('cart-modal');
+
+        const closeCartModalButton = document.getElementById('close-cart-modal');
+
+        const cartItemsContainer = document.getElementById('cart-items');
+
+        const cartTotalSpan = document.getElementById('cart-total');
+
+        const cartCountSpan = document.getElementById('cart-count');
+
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+
+        const checkoutForm = document.getElementById('checkout-form'); // Reference to the form
+
+        const toastContainer = document.getElementById('toast-container');
+
+
+
+        // Function to save cart to localStorage
+
+        function saveCart() {
+
+            localStorage.setItem('siomayKokoYogaCart', JSON.stringify(cart));
+
+        }
+
+
+
+        // Function to update cart display
+
+        function updateCartDisplay() {
+
+            cartItemsContainer.innerHTML = ''; // Clear current items
+
+            let total = 0;
+
+
+
+            if (cart.length === 0) {
+
+                emptyCartMessage.style.display = 'block';
+
+                checkoutForm.classList.add('hidden'); // Hide form if cart is empty
+
+            } else {
+
+                emptyCartMessage.style.display = 'none';
+
+                checkoutForm.classList.remove('hidden'); // Show form if cart has items
+
+                cart.forEach((item, index) => {
+
+                    const itemElement = document.createElement('div');
+
+                    itemElement.classList.add('flex', 'flex-col', 'sm:flex-row', 'justify-between', 'items-center', 'py-3', 'px-2', 'bg-gray-50', 'rounded-lg', 'mb-2', 'shadow-sm', 'border', 'border-gray-100');
+
+                    itemElement.innerHTML = `
+
+                        <div class="flex-grow text-center sm:text-left mb-2 sm:mb-0">
+
+                            <span class="font-semibold text-lg text-gray-900">${item.name}</span>
+
+                            <span class="text-sm text-gray-600 block">Rp ${item.price.toLocaleString('id-ID')}</span>
+
+                        </div>
+
+                        <div class="flex items-center space-x-3">
+
+                            <button type="button" class="remove-one-btn bg-red-100 text-red-600 w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold hover:bg-red-200 transition" data-index="${index}">-</button>
+
+                            <span class="font-bold text-xl text-gray-800">${item.quantity}</span>
+
+                            <button type="button" class="add-one-btn bg-green-100 text-green-600 w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold hover:bg-green-200 transition" data-index="${index}">+</button>
+
+                            <button type="button" class="remove-item-btn text-red-500 hover:text-red-700 ml-4 p-2 rounded-full hover:bg-red-50 transition" data-index="${index}">
+
+                                <i class="fas fa-trash-alt text-lg"></i>
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+                    cartItemsContainer.appendChild(itemElement);
+
+                    total += item.price * item.quantity;
+
+                });
+
+            }
+
+
+
+            cartTotalSpan.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+
+            cartCountSpan.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            saveCart(); // Save cart state
+
+        }
+
+
+
+        // Add to cart button event listeners
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+
+            button.addEventListener('click', (e) => {
+
+                const name = e.target.closest('button').dataset.name;
+
+                const price = parseInt(e.target.closest('button').dataset.price);
+
+
+
+                const existingItem = cart.find(item => item.name === name);
+
+                if (existingItem) {
+
+                    existingItem.quantity++;
+
+                } else {
+
+                    cart.push({ name, price, quantity: 1 });
+
+                }
+
+                updateCartDisplay();
+
+                showToast(`"${name}" ditambahkan ke keranjang!`, 'success');
+
+            });
+
+        });
+
+
+
+        // Event delegation for cart item buttons (add one, remove one, remove item)
+
+        cartItemsContainer.addEventListener('click', (e) => {
+
+            const target = e.target.closest('button');
+
+            if (!target) return; // Not a button
+
+
+
+            const index = target.dataset.index;
+
+            if (target.classList.contains('remove-one-btn')) {
+
+                if (cart[index].quantity > 1) {
+
+                    cart[index].quantity--;
+
+                } else {
+
+                    showToast(`"${cart[index].name}" dihapus dari keranjang.`, 'info');
+
+                    cart.splice(index, 1); // Remove item if quantity becomes 0
+
+                }
+
+                updateCartDisplay();
+
+            } else if (target.classList.contains('add-one-btn')) {
+
+                cart[index].quantity++;
+
+                updateCartDisplay();
+
+            } else if (target.classList.contains('remove-item-btn')) {
+
+                showToast(`"${cart[index].name}" dihapus dari keranjang.`, 'info');
+
+                cart.splice(index, 1);
+
+                updateCartDisplay();
+
+            }
+
+        });
+
+
+
+        // Open/Close Cart Modal
+
+        cartButton.addEventListener('click', () => {
+
+            cartModal.classList.remove('hidden');
+
+            document.body.classList.add('overflow-hidden'); // Prevent scrolling body when modal is open
+
+        });
+
+
+
+        closeCartModalButton.addEventListener('click', () => {
+
+            cartModal.classList.add('hidden');
+
+            document.body.classList.remove('overflow-hidden');
+
+        });
+
+
+
+        cartModal.addEventListener('click', (e) => {
+
+            if (e.target === cartModal) {
+
+                cartModal.classList.add('hidden');
+
+                document.body.classList.remove('overflow-hidden');
+
+            }
+
+        });
+
+
+
+        // Checkout form submission
+
+        checkoutForm.addEventListener('submit', (e) => {
+
+            e.preventDefault(); // Prevent default form submission
+
+
+
+            if (cart.length === 0) {
+
+                showToast('Keranjang Anda kosong. Silakan tambahkan produk terlebih dahulu.', 'warning');
+
+                return;
+
+            }
+
+
+
+            const customerName = document.getElementById('customer-name').value;
+
+            const customerAddress = document.getElementById('customer-address').value;
+
+            const customerNotes = document.getElementById('customer-notes').value || '-';
+
+            const totalAmount = cartTotalSpan.textContent;
+
+
+
+            let orderDetails = `*Order Baru Siomay Koko Yoga*\n\n`;
+
+            orderDetails += `*Nama:* ${customerName}\n`;
+
+            orderDetails += `*Alamat:* ${customerAddress}\n`;
+
+            orderDetails += `*Catatan:* ${customerNotes}\n\n`;
+
+            orderDetails += `*Detail Pesanan:*\n`;
+
+
+
+            cart.forEach(item => {
+
+                orderDetails += `- ${item.name} x ${item.quantity} (Rp ${item.price.toLocaleString('id-ID')})\n`;
+
+            });
+
+            orderDetails += `\n*Total Belanja: ${totalAmount}*\n\n`;
+
+            orderDetails += `Terima kasih sudah memesan!`;
+
+
+
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderDetails)}`;
+
+
+
+            window.open(whatsappUrl, '_blank');
+
+
+
+            // Clear cart and close modal after sending order
+
+            cart = [];
+
+            updateCartDisplay();
+
+            checkoutForm.reset(); // Clear form fields
+
+            cartModal.classList.add('hidden');
+
+            document.body.classList.remove('overflow-hidden');
+
+            showToast('Pesanan Anda sedang diproses dan akan kami kirimkan via WhatsApp. Mohon tunggu konfirmasi dari kami!', 'success', 5000);
+
+        });
+
+
+
+
+
+        // Scroll animations (fade-in-up & scale-in)
+
+        const faders = document.querySelectorAll('.fade-in-up');
+
+        const scalers = document.querySelectorAll('.scale-in');
+
+
+
+        const appearOptions = {
+
+            threshold: 0.1,
+
+            rootMargin: "0px 0px -80px 0px"
+
+        };
+
+
+
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add('animate');
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        }, appearOptions);
+
+
+
+        faders.forEach(fader => {
+
+            appearOnScroll.observe(fader);
+
+        });
+
+        scalers.forEach(scaler => {
+
+            appearOnScroll.observe(scaler);
+
+        });
+
+
+
+        // Toast Notification Function
+
+        function showToast(message, type = 'info', duration = 3000) {
+
+            const toast = document.createElement('div');
+
+            toast.classList.add('px-5', 'py-3', 'rounded-lg', 'shadow-xl', 'text-white', 'text-sm', 'font-medium', 'flex', 'items-center', 'space-x-3', 'opacity-0', 'transform', 'translate-y-4', 'transition-all', 'duration-300', 'ease-out');
+
+
+
+            let iconHtml = '';
+
+            let bgColor = '';
+
+
+
+            switch (type) {
+
+                case 'success':
+
+                    bgColor = 'bg-green-500';
+
+                    iconHtml = '<i class="fas fa-check-circle"></i>';
+
+                    break;
+
+                case 'error':
+
+                    bgColor = 'bg-red-500';
+
+                    iconHtml = '<i class="fas fa-times-circle"></i>';
+
+                    break;
+
+                case 'warning':
+
+                    bgColor = 'bg-yellow-500';
+
+                    iconHtml = '<i class="fas fa-exclamation-triangle"></i>';
+
+                    break;
+
+                case 'info':
+
+                default:
+
+                    bgColor = 'bg-blue-500';
+
+                    iconHtml = '<i class="fas fa-info-circle"></i>';
+
+                    break;
+
+            }
+
+
+
+            toast.classList.add(bgColor);
+
+            toast.innerHTML = `${iconHtml} <span>${message}</span>`;
+
+            toastContainer.appendChild(toast);
+
+
+
+            // Animate in
+
+            setTimeout(() => {
+
+                toast.classList.remove('opacity-0', 'translate-y-4');
+
+                toast.classList.add('opacity-100', 'translate-y-0');
+
+            }, 50);
+
+
+
+            // Animate out and remove
+
+            setTimeout(() => {
+
+                toast.classList.remove('opacity-100', 'translate-y-0');
+
+                toast.classList.add('opacity-0', 'translate-y-4');
+
+                toast.addEventListener('transitionend', () => toast.remove());
+
+            }, duration);
+
+        }
+
+
+
+        // Initial cart display update on load
+
+        updateCartDisplay();
+
+    </script>
+
+
+         <script>
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatBox = document.getElementById('chat-box');
+    const closeChat = document.getElementById('close-chat');
+    const userInput = document.getElementById('user-input');
+    const messages = document.getElementById('messages');
+
+    chatToggle.addEventListener('click', () => {
+      chatBox.classList.toggle('hidden');
+      if (!chatBox.classList.contains('hidden') && messages.childElementCount === 0) {
+        appendBubble('ai', 'Selamat Datang di website Siomay Mas Yoga! Ada yang bisa dibantu?');
+      }
+    });
+
+    closeChat.addEventListener('click', () => {
+      chatBox.classList.add('hidden');
+    });
+
+    function appendBubble(sender, text) {
+      const bubble = document.createElement('div');
+      bubble.className = `px-4 py-2 rounded-lg max-w-xs mb-2 ${
+        sender === 'user'
+          ? 'bg-red-600 text-white self-end ml-auto'
+          : 'bg-gray-200 text-gray-800 self-start mr-auto'
+      }`;
+      bubble.innerText = text;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex flex-col';
+      wrapper.appendChild(bubble);
+
+      messages.appendChild(wrapper);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const message = userInput.value.trim();
+      if (message === '') return;
+
+      appendBubble('user', message);
+      userInput.value = '';
+
+      // Bubble "Mengetik..."
+      const typingBubble = document.createElement('div');
+      typingBubble.className = 'px-4 py-2 rounded-lg max-w-xs mb-2 bg-gray-200 text-gray-800 self-start mr-auto';
+      typingBubble.innerText = 'Mengetik...';
+      const typingWrapper = document.createElement('div');
+      typingWrapper.className = 'flex flex-col';
+      typingWrapper.appendChild(typingBubble);
+      messages.appendChild(typingWrapper);
+      messages.scrollTop = messages.scrollHeight;
+
+      try {
+        const res = await fetch(`https://api.ndradev.tech/ai/chat/luminai?prompt=${encodeURIComponent(message)}`);
+        const data = await res.json();
+        messages.removeChild(typingWrapper);
+
+        appendBubble('ai', data.result || data.error || 'Maaf, terjadi kesalahan.');
+      } catch (error) {
+        messages.removeChild(typingWrapper);
+        appendBubble('ai', 'Gagal terhubung ke server.');
+      }
+    }
+
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+         </script>
+
+
+
+</body>
+
+</html>
+
