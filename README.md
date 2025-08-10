@@ -4,9 +4,6 @@
 </p>
 
 <!-- Teks Ketik Animasi -->
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=00F5A0&center=true&vCenter=true&width=600&lines=AI‑powered+Virtual+Chef+for+Siomay;Gunakan+AI+untuk+bantuan+menarik;Coba+Sekarang" alt="Typing Animation" />
-</p>
 
 <p align="center">
   <a href="https://siomay-ai.vercel.app/"><img src="https://img.shields.io/badge/Visit‑Live‑Demo-00C851?style=for-the-badge"></a>
@@ -35,7 +32,7 @@
   <img src="https://raw.githubusercontent.com/Yoganugroho387/siomay-ai/main/images/preview_siomay_ai.png" alt="Preview Siomay AI" width="800">
 </p>
 
-*Catatan: Upload file `preview_siomay_ai.png` ke direktori `images/` di repo supaya tampil.*
+
 
 ---
 
